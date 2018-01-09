@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/assets/style/style.css">
+    <% include ./partial/profileNav %>
+  </head>
+  <body>
+
+    <script src="/assets/js/postData.js"></script>
+
+  <div class'body' text-align="center">
+    <h1>welcome <%=user.name%></h1>
+    <h2>add a post here</h2>
+    <form method="post" action="./newPost">
+      <textarea name="newPost" rows="8" cols="80"></textarea><br>
+      <input type="submit">
+    </form>
+    <h2>my posts</h2>
+    <%if(user.posts.length === 0) {%>
+    <h3>you have no posts</h3>
+    <%}%>
+    <%user.posts.forEach(post => {%>
+      <h3><%=post.text%></h3>
+    <%});%>
+  </div>
+  </body>
+</html>
