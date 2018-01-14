@@ -18,11 +18,21 @@ router.post('/newPost',urlencoded,(req,res) => {
 
   const post = {
     text:req.body.newPost,
+    title:req.body.title,
     userId:user.id
   }
   user.posts.push(post);
   user.save().then(user => {
     res.redirect('/profile/#');
+  });
+});
+
+router.post('/deletePost',urlencoded,(req,res) => {
+  const user = req.user;
+
+  user.posts.splice(user.posts.indexOf(req.body.post),1);
+  user.save().then(() => {
+    res.redirect('/profile/');
   });
 });
 

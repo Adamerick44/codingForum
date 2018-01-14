@@ -8,21 +8,25 @@
   </head>
   <body>
 
-    <script src="/assets/js/postData.js"></script>
-
   <div class'body' text-align="center">
     <h1>welcome <%=user.name%></h1>
     <h2>add a post here</h2>
     <form method="post" action="./newPost">
+      <input type="text" name='title'><br>
       <textarea name="newPost" rows="8" cols="80"></textarea><br>
       <input type="submit">
     </form>
     <h2>my posts</h2>
     <%if(user.posts.length === 0) {%>
-    <h3>you have no posts</h3>
+    <h3 name='post'>you have no posts</h3>
     <%}%>
     <%user.posts.forEach(post => {%>
-      <h3><%=post.text%></h3>
+      <form method='post' action='./deletePost'>
+        <input name="title" value="<%=post.title%>" readonly/><br>
+        <input name="post" value="<%=post.text%>" readonly/><br>
+        <button onclick="console.log(this)">delete</button>
+        <br>
+      </form>
     <%});%>
   </div>
   </body>
